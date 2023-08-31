@@ -6,8 +6,13 @@ from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 
 class MyWidget(Widget):
+    second_angle = NumericProperty(0)
     def __init__(self, **kwargs):
         super().__init__()
+        Clock.schedule_interval(self.second_rotate, 1)
+
+    def second_rotate(self, dt):
+        self.second_angle += 1
 
 
 

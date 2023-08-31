@@ -2,4 +2,16 @@ MyWidget:
 
 <MyWidget>:
     canvas:
-
+        Color:
+            rgba: 0, 1, 0.5, 1
+        Ellipse:
+            pos: self.center_x-dp(200), self.center_y-dp(200)
+            size: dp(400), dp(400)
+        Color:
+            rgba: 1, 0, 0, 1
+        Rotate:
+            angle: -6*root.second_angle
+            origin: root.center
+        Line:
+            points: self.center_x, self.center_y, self.center_x, self.center_y+dp(200)
+            width: 3
