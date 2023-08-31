@@ -10,6 +10,7 @@ class MyWidget(Widget):
         super().__init__()
 
 
+
 class MyApp(App):
     pass
 
