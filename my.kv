@@ -1,17 +1,61 @@
-MyWidget:
+ClockWidget:
 
-<MyWidget>:
-    canvas:
-        Color:
-            rgba: 0, 1, 0.5, 1
-        Ellipse:
-            pos: self.center_x-dp(200), self.center_y-dp(200)
-            size: dp(400), dp(400)
+<TimeWidget>:
+    canvas.before:
+        PushMatrix
         Color:
             rgba: 1, 0, 0, 1
         Rotate:
-            angle: -6*root.second_angle
-            origin: root.center
+            angle: root.second_angle
+            origin: root.parent.center
         Line:
-            points: self.center_x, self.center_y, self.center_x, self.center_y+dp(200)
+            points: root.parent.center_x, root.parent.center_y, root.parent.center_x, root.parent.center_y+dp(180)
             width: 3
+        Color:
+            rgba: 0, 0, 0, 1
+        Rotate:
+            angle: root.minute_angle - root.second_angle
+            origin: root.parent.center
+        Line:
+            points: root.parent.center_x, root.parent.center_y, root.parent.center_x, root.parent.center_y+dp(160)
+            width: 3
+        Color:
+            rgba: 0, 0, 0, 1
+        Rotate:
+            angle: root.hour_angle - root.minute_angle
+            origin: root.parent.center
+        Line:
+            points: root.parent.center_x, root.parent.center_y, root.parent.center_x, root.parent.center_y+dp(140)
+            width: 4
+    canvas.after:
+        PopMatrix
+
+
+<ClockWidget>:
+    canvas.before:
+        Color:
+            rgba: 125/255, 56/255, 0, 1
+        Ellipse:
+            id: circle
+            pos: self.center_x-dp(200), self.center_y-dp(200)
+            size: dp(400), dp(400)
+    TimeWidget:
+    TextInput:
+        id: time_input
+        size: 2000, 50
+        font_size: 25
+        multiline: False
+    Button:
+        text: "Set Alarm"
+        pos: 0, 50
+        on_press: root.change_alarm()
+    Label:
+        color: 0, 0, 0, 1
+        text: "Alarm set on: " + root.alarm_time
+        pos: 100, 600
+
+
+
+
+
+
